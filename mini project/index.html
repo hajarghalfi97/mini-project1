@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Fit</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            margin: auto;
+            color: white;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            color: #ae1212;
+        }
+        label {
+            display: block;
+            margin: 1px 0 5px;
+        }
+        input, select, textarea, button  {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgb(0, 0, 0);
+        }
+        li {
+            float: left;
+        }
+        li  a  {
+            display: block;
+            color: rgb(161, 21, 21);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #111;
+        }
+        #contact {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="https://www.sciencedaily.com/news/health_medicine/fitness/">News</a></li>
+        <li><button id="showContactButton">Contact</button></li> 
+        <li><a href="#about">About</a></li> 
+    </ul>
+
+    <div id="contact">
+        <p><b>Customer Support:</b> support@getfitapp.com</p>
+        <p><b>Phone:</b> +1-804-123-4567</p>
+        <p><b>Address:</b> 123 Get Fit Fitness St, Richmond City, Virginia State</p>
+    </div>
+
+    <h1>Get Fit</h1>
+
+    <form id="fitnessForm">
+        <label for="name"><b>Name:</b></label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age"><b>Age:</b></label>
+        <input type="text" id="age" name="age" required>
+
+        <label for="height"><b>Height (ft'in):</b></label>
+        <input type="text" id="height" name="height" required>
+
+        <label for="gender"><b>Gender:</b></label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="weight"><b>Weight (lb):</b></label>
+        <input type="text" id="weight" name="weight" required>
+
+        <label for="goal"><b>Goal:</b></label>
+        <input type="text" id="goal" name="goal" required>
+
+        <h2>Select Workout Plan</h2>
+
+        <label for="lose weight"><span style="background-color: rgb(218, 217, 231);"><b>Lose weight</b></span></label><br> 
+        <input type="checkbox" id="LS" name="workout plan" value="Lose weight">
+
+        <label for="Gain muscles"><span style="background-color: rgb(218, 217, 231);"><b>Gain muscles</b></span></label><br>
+        <input type="checkbox" id="GM" name="workout plan" value="Gain muscles">
+
+        <label for="lose weight & gain muscles"><span style="background-color: rgb(218, 217, 231);"><b>Lose Weight & Gain Muscles</b></span></label>
+        <input type="checkbox" id="LS&GM" name="workout plan" value="Lose weight & gain muscles">
+      
+        <button type="submit"><b>Submit</b></button><br>
+    </form>
+
+    <h2 id="result" style="color: rgb(184, 32, 32); text-align: center;"></h2>
+
+    <script>
+        // Show or hide the contact info
+        document.getElementById('showContactButton').addEventListener('click', function() {
+            const infoDiv = document.getElementById('contact');
+            if (infoDiv.style.display === 'none' || infoDiv.style.display === '') {
+                this.textContent = 'Hide Info'; // Change button text
+                infoDiv.style.display = 'block'; // Show the info
+            } else {
+                infoDiv.style.display = 'none'; // Hide the info
+                this.textContent = 'Contact'; // Change button text
+            }
+        });
+
+        // Handle form submission
+        const form = document.getElementById('fitnessForm');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const goal = document.getElementById('goal').value;
+
+            // Get selected workout plan
+            const workoutPlans = [];
+            document.querySelectorAll('input[name="workout plan"]:checked').forEach(plan => {
+                workoutPlans.push(plan.value);
+            });
+
+            // Display result
+            result.innerHTML = `
+                Hello, <b>${name}</b>! <br>
+                Age: ${age} years<br>
+                Height: ${height} ft <br>
+                Weight: ${weight} lb<br>
+                Goal: ${goal}<br>
+                Selected Workout Plans: ${workoutPlans.length > 0 ? workoutPlans.join(', ') : 'None'}<br>
+                Good luck with your fitness journey! YOU CAN DO IT!
+            `;
+        });
+    </script>
+</body>
+</html>
