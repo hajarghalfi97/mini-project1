@@ -1,0 +1,7 @@
+[
+    {"name": "Lose Weight", "duration": 60, "description": "High-intensity cardio workout." },
+    { "name": "Gain Muscle", "duration": 90, "description": "Strength training and weight lifting." },
+    { "name": "Lose Weight & Gain Muscle", "duration": 75, "description": "Balanced mix of cardio and strength training." },
+    { "name": "Flexibility & Mobility", "duration": 45, "description": "Stretching and yoga-based exercises." },
+    { "name": "Endurance Training", "duration": 80, "description": "Long-distance running and stamina building." }
+]

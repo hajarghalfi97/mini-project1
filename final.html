@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Fit</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script> <!-- ECharts Library -->
+    <style>
+       body {
+    background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    margin: 0;
+    color: white;
+}
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+li {
+    float: left;
+}
+li a, li button {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: black; /* Black background for consistency */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effect */
+}
+li a:hover, li button:hover {
+    background-color: #e04e2b; /* Highlight effect on hover */
+}
+form {
+    max-width: 300px;
+    margin: 2px left;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 40px;
+}
+form label {
+    display: block;
+    margin: 10px  5px;
+}
+input, select, textarea, button {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: center;
+    border-radius: 20px;
+}
+input[type="checkbox"] {
+    width: auto;
+}
+button {
+    background-color: black; /* Consistent black background */
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+    background-color: #e04e2b; /* Highlight effect on hover */
+}
+#contact {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+#result {
+    text-align: center;
+    color: rgb(184, 32, 32);
+    margin-top: 20px;
+}
+.testimonials {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px 20px;
+    margin-top: 40px;
+    color: white;
+    text-align: center;
+}
+.testimonials h2 {
+    margin-bottom: 20px;
+}
+.testimonial {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(255, 87, 34, 0.8);
+    border-radius: 10px;
+}
+.testimonial img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+.testimonial p {
+    font-style: italic;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    margin-top: 40px;
+}
+#about {
+    display: none; /* Hide About by default */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+
+        .testimonials {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 20px;
+        }
+
+        .testimonial {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(255, 87, 34, 0.8);
+            border-radius: 10px;
+        }
+
+        .testimonial img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+        }
+
+
+        .form-chart-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: flex-start;
+        }
+
+        #chart-container {
+            width: 70%;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        #fitnessForm {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="http://127.0.0.1:5501/.vscode/draft2.html">Home</a></li>
+        <li><a href="https://www.sciencedaily.com/news/health_medicine/fitness/">News</a></li>
+        <li><button id="showContactButton">Contact</button></li>
+        <li><button id="showAboutButton">About</button></li>
+    </ul>
+
+    <div id="contact">
+        <p><b>Customer Support:</b> <a href="mailto:support@getfitapp.com" style="text-decoration: underline;">support@getfitapp.com</a></p>
+        <p><b>Phone:</b><a href="tel:+18041234567" style="text-decoration: underline;">+1-804-123-4567</a></p>
+        <p><b>Address:</b> 123 Get Fit Fitness St, Richmond City, Virginia State</p>
+    </div>
+
+    <div id="about">
+        <h2>About Us</h2>
+        <p>At Get Fit, we believe that fitness is for everyone. Our platform is designed to help you achieve your goals, whether you're looking to lose weight, gain muscle, or simply live a healthier lifestyle. Founded in 2025, our mission is to empower individuals to take charge of their health and fitness journey.</p>
+        <p>With customized workout plans, expert guidance, and a supportive community, we're here to make fitness accessible and enjoyable for everyone. Join us and start your transformation today!</p>
+    </div>
+
+    <h1>Get Fit</h1>
+
+    <div class="form-chart-container">
+        <form id="fitnessForm" onsubmit="redirectToPage(event)">
+            <label for="name"><b>Name:</b></label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="age"><b>Age:</b></label>
+            <input type="text" id="age" name="age" required>
+        
+            <label for="height"><b>Height (ft'in):</b></label>
+            <input type="text" id="height" name="height" required>
+        
+            <label for="gender"><b>Gender:</b></label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        
+            <label for="weight"><b>Weight (lb):</b></label>
+            <input type="text" id="weight" name="weight" required>
+        
+            <label for="goal"><b>Goal:</b></label>
+            <select id="goal" name="goal" required>
+        
+   </select>
+            <button type="submit"><b>Submit</b></button><br>
+        </form>
+
+        <div id="chart-container">
+            <div id="main-chart" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+
+    <h2 id="result" style="color: rgb(184, 32, 32); text-align: center;"></h2>
+
+    <div class="testimonials">
+        <h2>What Our Customers Say</h2>
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/men/30.jpg" alt="Customer 1">
+            <p>"I never thought I'd be able to lose weight and build muscle at the same time, but with Get Fit's personalized plans, I've achieved more than I ever expected!"</p>
+            <b>- Smith Doe</b>
+        </div>
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer 2">
+            <p>"This program has completely transformed my fitness journey. I'm more confident, healthier, and feel stronger every day!"</p>
+            <b>- lara Smith</b>
+        </div>
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer 3">
+            <p>"Get Fit made it easy for me to stay on track with my goals. I love how the workouts are challenging but doable!"</p>
+            <b>- Mark jane</b>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Get Fit. All rights reserved.</p>
+    </footer>
+
+    <script>
+         
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+    const goalDropdown = document.getElementById("goal");
+
+    // Fetch workout data from the JSON file
+    fetch("workouts.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch workout data");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Populate the dropdown with options
+            data.forEach(workout => {
+                const option = document.createElement("option");
+                option.value = workout.name;
+                option.textContent = `${workout.name} (${workout.duration} min)`;
+                goalDropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error("Error fetching data:", error));
+});
+
+
+
+            document.getElementById('showContactButton').addEventListener('click', function() {
+            const infoDiv = document.getElementById('contact');
+            if (infoDiv.style.display === 'none' || infoDiv.style.display === '') {
+                this.textContent = 'Hide Info'; 
+                infoDiv.style.display = 'block';
+            } else {
+                infoDiv.style.display = 'none';
+                this.textContent = 'Contact'; 
+            }
+        });
+
+        // Show or hide the about info
+        document.getElementById('showAboutButton').addEventListener('click', function() {
+            const aboutDiv = document.getElementById('about');
+            if (aboutDiv.style.display === 'none' || aboutDiv.style.display === '') {
+                this.textContent = 'Hide Info'; 
+                aboutDiv.style.display = 'block';
+            } else {
+                aboutDiv.style.display = 'none'; 
+                this.textContent = 'About'; 
+            }
+        });
+        // ECharts Configuration
+        var chart = echarts.init(document.getElementById('main-chart'));
+
+        var option = {
+            title: {
+                text: 'Weekly Workout Trends',
+                subtext: 'Minutes Spent on Each Workout Type',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: 'bottom'
+            },
+            series: [
+                {
+                    name: 'Workout Types',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: true,
+                        position: 'outside'
+                    },
+                    labelLine: {
+                        show: true
+                    },
+                    data: [
+                        { value: 35, name: 'Cardio' },
+                        { value: 25, name: 'Strength Training' },
+                        { value: 20, name: 'Yoga' },
+                        { value: 10, name: 'Other Activities' }
+                    ]
+                }
+            ]
+        };
+
+        // Apply the options to the chart
+        chart.setOption(option);
+
+        // Show or hide the contact info
+       
+
+        // Handle form submission
+const form = document.getElementById('fitnessForm');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const goal = document.getElementById('goal').value;
+
+    const workoutPlans = [];
+    document.querySelectorAll('input[name="workout plan"]:checked').forEach(plan => {
+        workoutPlans.push(plan.value);
+    });
+
+    // After collecting data, call the redirect function
+    redirectToPage();
+});
+
+// The redirect function
+function redirectToPage() {
+    window.location.href = "http://127.0.0.1:5501/mini-project2/second.html"; 
+}
+
+    </script>
+</body>
+</html>
